@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LTM Uruguay - Ranking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Urbanist:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║           🏓 LTM URUGUAY - VERSIÓN CON DISEÑO MÁXIMO            ║
+    ╚══════════════════════════════════════════════════════════════════╝
+    
+    📋 GUÍA DE EDICIÓN RÁPIDA:
+    
+    🔹 RANKING → Busca "📊 DATOS DEL RANKING"
+    🔹 TORNEOS → Busca "🏆 DATOS DE TORNEOS"
+    🔹 CONTACTO → Busca "📞 INFORMACIÓN DE CONTACTO"
+    
+    ══════════════════════════════════════════════════════════════════
+    -->
+    
+    <style>
+        :root {
+            --azul-marino: #1e3a8a;
+            --azul-oscuro: #0f1f47;
+            --verde: #22c55e;
+            --verde-claro: #4ade80;
+            --rojo: #ef4444;
+            --naranja: #f97316;
+            --blanco: #ffffff;
+            --gris-claro: #f8fafc;
+            --fuente-titulos: 'Bebas Neue', sans-serif;
+            --fuente-texto: 'Urbanist', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--fuente-texto);
+            background: var(--gris-claro);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* PATRÓN DE FONDO ANIMADO */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 30%, rgba(34, 197, 94, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(30, 58, 138, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        /* PELOTITAS DECORATIVAS FLOTANTES */
+        body::after {
+            content: '●';
+            position: fixed;
+            top: 20%;
+            right: 10%;
+            font-size: 1.5rem;
+            color: var(--naranja);
+            opacity: 0.15;
+            animation: floatBall 6s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        /* ══════════════════════════════════════
+           🎯 HEADER MEJORADO
+           ══════════════════════════════════════ */
+        .header {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-marino) 100%);
+            padding: 0.8rem 1rem;
+            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.4);
+            border-bottom: 4px solid var(--verde);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efecto de brillo en header */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-container {
+            background: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--verde);
+            animation: logoGlow 3s ease-in-out infinite;
+            width: 65px;
+            height: 65px;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        /* Fallback si el logo no carga */
+        .logo-container img[alt]::before {
+            content: '🏓';
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .club-name {
+            color: var(--blanco);
+            text-align: left;
+        }
+
+        .club-name h1 {
+            font-family: var(--fuente-titulos);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .club-name p {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--verde-claro);
+            letter-spacing: 1px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* ══════════════════════════════════════
+           🏓 HERO CON EFECTOS VISUALES
+           ══════════════════════════════════════ */
+        .hero {
+            background: linear-gradient(135deg, var(--azul-marino) 0%, var(--verde) 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid var(--rojo);
+        }
+
+        /* RED DE PING PONG ANIMADA */
+        .hero::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255,255,255,0.3) 0px,
+                rgba(255,255,255,0.3) 8px,
+                transparent 8px,
+                transparent 16px
+            );
+            animation: netMove 2s linear infinite;
+        }
+
+        /* Paletas flotantes múltiples */
+        .hero::after {
+            content: '🏓';
+            position: absolute;
+            top: 20%;
+            right: 5%;
+            font-size: 3.5rem;
+            opacity: 0.15;
+            animation: float 8s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .hero-ball-1 {
+            position: absolute;
+            bottom: 15%;
+            left: 8%;
+            font-size: 2.5rem;
+            opacity: 0.12;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .hero h2 {
+            font-family: var(--fuente-titulos);
+            font-size: 2.3rem;
+            color: var(--blanco);
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: var(--blanco);
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        /* ══════════════════════════════════════
+           📊 RANKING CON DISEÑO EXTREMO
+           ══════════════════════════════════════ */
+        .ranking-section {
+            max-width: 100%;
+            margin: 1.5rem 0.5rem;
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
+            padding: 1rem 1rem;
+            border-radius: 12px 12px 0 0;
+            border-left: 6px solid var(--rojo);
+            box-shadow: 
+                0 4px 15px rgba(34, 197, 94, 0.4),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Patrón de puntos como paleta */
+        .section-header::before {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 2px, transparent 2px);
+            background-size: 8px 8px;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        .section-header h3 {
+            font-family: var(--fuente-titulos);
+            font-size: 1.7rem;
+            color: var(--blanco);
+            letter-spacing: 2px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .ranking-container {
+            background: var(--blanco);
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+        }
+
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 100%;
+        }
+
+        .ranking-table thead {
+            background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-oscuro) 100%);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .ranking-table thead th {
+            color: var(--blanco);
+            font-weight: 800;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.9rem 0.5rem;
+            text-align: center;
+            border-bottom: 3px solid var(--verde);
+            white-space: nowrap;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .ranking-table thead th:nth-child(2) {
+            text-align: left;
+            padding-left: 1rem;
+        }
+
+        .ranking-table tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .ranking-table tbody tr:hover {
+            background: rgba(34, 197, 94, 0.08);
+            transform: translateX(3px);
+        }
+
+        .ranking-table tbody tr:nth-child(even) {
+            background: rgba(248, 250, 252, 0.6);
+        }
+
+        .ranking-table tbody td {
+            padding: 1.1rem 0.5rem;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .ranking-table tbody td:nth-child(2) {
+            text-align: left;
+            padding-left: 1rem;
+        }
+
+        .position-cell {
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: var(--azul-marino);
+            font-family: var(--fuente-titulos);
+            min-width: 50px;
+        }
+
+        /* TOP 3 CON EFECTOS EXTREMOS */
+        .position-1 {
+            background: linear-gradient(90deg, rgba(251, 191, 36, 0.15) 0%, rgba(251, 191, 36, 0.05) 50%, transparent 100%) !important;
+            border-left: 5px solid #f59e0b !important;
+            box-shadow: inset 0 0 20px rgba(251, 191, 36, 0.1);
+        }
+
+        .position-1 .position-cell {
+            color: #f59e0b;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+            animation: goldShine 2s ease-in-out infinite;
+        }
+
+        .position-2 {
+            background: linear-gradient(90deg, rgba(148, 163, 184, 0.15) 0%, rgba(148, 163, 184, 0.05) 50%, transparent 100%) !important;
+            border-left: 5px solid #64748b !important;
+            box-shadow: inset 0 0 20px rgba(148, 163, 184, 0.1);
+        }
+
+        .position-2 .position-cell {
+            color: #64748b;
+            text-shadow: 0 0 10px rgba(148, 163, 184, 0.5);
+        }
+
+        .position-3 {
+            background: linear-gradient(90deg, rgba(234, 88, 12, 0.15) 0%, rgba(234, 88, 12, 0.05) 50%, transparent 100%) !important;
+            border-left: 5px solid #ea580c !important;
+            box-shadow: inset 0 0 20px rgba(234, 88, 12, 0.1);
+        }
+
+        .position-3 .position-cell {
+            color: #ea580c;
+            text-shadow: 0 0 10px rgba(234, 88, 12, 0.5);
+        }
+
+        .medal {
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .player-name {
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            font-size: 1.05rem;
+            min-width: 100px;
+        }
+
+        .points-cell {
+            font-weight: 900;
+            color: var(--verde);
+            font-size: 1.2rem;
+            text-shadow: 0 1px 3px rgba(34, 197, 94, 0.3);
+        }
+
+        .stats-cell {
+            font-weight: 700;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .wins-cell {
+            font-weight: 800;
+            color: var(--rojo);
+            font-size: 1rem;
+        }
+
+        /* ══════════════════════════════════════
+           🏆 TORNEOS CON MÁXIMOS EFECTOS
+           ══════════════════════════════════════ */
+        .tournaments-section {
+            margin: 3rem 0.5rem 2rem;
+            position: relative;
+        }
+
+        /* Paleta gigante de fondo */
+        .tournaments-section::before {
+            content: '🏓';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 5rem;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .section-title {
+            font-family: var(--fuente-titulos);
+            font-size: 2.2rem;
+            color: var(--azul-marino);
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--verde) 0%, var(--rojo) 100%);
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+        }
+
+        .tournaments-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .tournament-card {
+            background: var(--blanco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .tournament-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--verde), var(--azul-marino));
+            border-radius: 15px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .tournament-card:active {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .tournament-card:active::before {
+            opacity: 1;
+        }
+
+        /* Efecto de luz que cruza */
+        .tournament-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            transition: left 0.7s ease;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .tournament-card:active::after {
+            left: 200%;
+        }
+
+        .tournament-image-container {
+            position: relative;
+            width: 100%;
+            height: 230px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-oscuro) 100%);
+        }
+
+        /* Overlay con patrón */
+        .tournament-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(34, 197, 94, 0.2) 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Borde inferior con efecto neón */
+        .tournament-image-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--verde) 0%, var(--verde-claro) 50%, var(--verde) 100%);
+            box-shadow: 0 0 15px var(--verde);
+            z-index: 2;
+        }
+
+        .tournament-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: brightness(0.95);
+        }
+
+        .tournament-card:active .tournament-image {
+            transform: scale(1.1) rotate(1deg);
+            filter: brightness(1.05);
+        }
+
+        .tournament-info {
+            padding: 1.3rem;
+            position: relative;
+            background: linear-gradient(180deg, var(--blanco) 0%, rgba(248, 250, 252, 0.5) 100%);
+        }
+
+        /* Paleta decorativa pulsante */
+        .tournament-info::before {
+            content: '🏓';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            opacity: 0.12;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .tournament-date {
+            color: var(--verde);
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));
+            border-radius: 6px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.2);
+        }
+
+        .tournament-name {
+            font-family: var(--fuente-titulos);
+            font-size: 1.6rem;
+            color: var(--azul-marino);
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+            text-shadow: 0 1px 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .tournament-winner {
+            color: #64748b;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.5rem 0.8rem;
+            background: rgba(248, 250, 252, 0.8);
+            border-left: 4px solid var(--rojo);
+            border-radius: 0 6px 6px 0;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* ══════════════════════════════════════
+           📞 FOOTER
+           ══════════════════════════════════════ */
+        .footer {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-marino) 100%);
+            color: var(--blanco);
+            padding: 2.5rem 1rem 1.5rem;
+            margin-top: 4rem;
+            border-top: 5px solid var(--verde);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 50px,
+                rgba(255,255,255,0.02) 50px,
+                rgba(255,255,255,0.02) 100px
+            );
+            pointer-events: none;
+        }
+
+        .footer-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section {
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: var(--fuente-titulos);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1.5px;
+            color: var(--verde-claro);
+            text-shadow: 0 2px 8px rgba(74, 222, 128, 0.3);
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            background: rgba(255, 255, 255, 0.15);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .social-links a:active {
+            transform: scale(1.15) rotate(5deg);
+            background: var(--verde);
+            border-color: var(--blanco);
+            box-shadow: 0 0 20px var(--verde);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ══════════════════════════════════════
+           🎬 ANIMACIONES EXTREMAS
+           ══════════════════════════════════════ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(8deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+            75% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        @keyframes floatBall {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(-15px, -20px);
+            }
+            50% {
+                transform: translate(10px, -30px);
+            }
+            75% {
+                transform: translate(-5px, -15px);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-5px) scale(1.1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.08);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes orbit {
+            from {
+                transform: rotate(0deg) translateX(50px) rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg) translateX(50px) rotate(-360deg);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(200%);
+            }
+        }
+
+        @keyframes netMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 16px;
+            }
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(0,0,0,0.25), 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 15px 3px rgba(34, 197, 94, 0.4);
+            }
+        }
+
+        @keyframes goldShine {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+            }
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            }
+            50% {
+                text-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 20px rgba(74, 222, 128, 0.4);
+            }
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(5deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════
+         🎯 HEADER
+         ════════════════════════════════════════════ -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <!-- 
+                    📸 LOGO: Coloca tu archivo de logo en la misma carpeta 
+                    que este HTML y cambia "logo.gif" por el nombre de tu archivo.
+                    Soporta: .png, .jpg, .gif, .svg
+                -->
+                <img src="logo.gif" alt="LTM" onerror="this.style.display='none'; this.parentElement.innerHTML='🏓';">
+            </div>
+            <div class="club-name">
+                <h1>LTM URUGUAY</h1>
+                <p>Liga de Tenis de Mesa</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ════════════════════════════════════════════
+         🏓 HERO
+         ════════════════════════════════════════════ -->
+    <section class="hero">
+        <span class="hero-ball-1">🏓</span>
+        <h2>RANKING OFICIAL</h2>
+        <p>Temporada 2025</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         📊 DATOS DEL RANKING
+         ════════════════════════════════════════════
+         
+         ✏️ PARA ACTUALIZAR:
+         Copia toda una fila <tr> y pega debajo.
+         Cambia: posición, nombre, puntos, partidos, victorias
+         
+         ════════════════════════════════════════════ -->
+    <section class="ranking-section">
+        <div class="section-header">
+            <h3>🏓 TABLA DE POSICIONES</h3>
+        </div>
+        <div class="ranking-container">
+            <table class="ranking-table">
+                <thead>
+                    <tr>
+                        <th>POS.</th>
+                        <th>JUGADOR</th>
+                        <th>PUNTOS</th>
+                        <th>PARTIDOS</th>
+                        <th>VICTORIAS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="position-1">
+                        <td class="position-cell"><span class="medal">🥇</span>1</td>
+                        <td class="player-name">Carlos Rodríguez</td>
+                        <td class="points-cell">2450</td>
+                        <td class="stats-cell">45</td>
+                        <td class="wins-cell">38</td>
+                    </tr>
+                    <tr class="position-2">
+                        <td class="position-cell"><span class="medal">🥈</span>2</td>
+                        <td class="player-name">Ana Martínez</td>
+                        <td class="points-cell">2380</td>
+                        <td class="stats-cell">42</td>
+                        <td class="wins-cell">35</td>
+                    </tr>
+                    <tr class="position-3">
+                        <td class="position-cell"><span class="medal">🥉</span>3</td>
+                        <td class="player-name">Diego Fernández</td>
+                        <td class="points-cell">2290</td>
+                        <td class="stats-cell">40</td>
+                        <td class="wins-cell">32</td>
+                    </tr>
+                    <tr class="position-4">
+                        <td class="position-cell">4</td>
+                        <td class="player-name">María González</td>
+                        <td class="points-cell">2210</td>
+                        <td class="stats-cell">38</td>
+                        <td class="wins-cell">29</td>
+                    </tr>
+                    <tr class="position-5">
+                        <td class="position-cell">5</td>
+                        <td class="player-name">Pablo Silva</td>
+                        <td class="points-cell">2150</td>
+                        <td class="stats-cell">41</td>
+                        <td class="wins-cell">28</td>
+                    </tr>
+                    <tr class="position-6">
+                        <td class="position-cell">6</td>
+                        <td class="player-name">Sofía López</td>
+                        <td class="points-cell">2080</td>
+                        <td class="stats-cell">39</td>
+                        <td class="wins-cell">27</td>
+                    </tr>
+                    <tr class="position-7">
+                        <td class="position-cell">7</td>
+                        <td class="player-name">Martín Pérez</td>
+                        <td class="points-cell">2010</td>
+                        <td class="stats-cell">37</td>
+                        <td class="wins-cell">25</td>
+                    </tr>
+                    <tr class="position-8">
+                        <td class="position-cell">8</td>
+                        <td class="player-name">Laura Torres</td>
+                        <td class="points-cell">1940</td>
+                        <td class="stats-cell">36</td>
+                        <td class="wins-cell">24</td>
+                    </tr>
+                    <tr class="position-9">
+                        <td class="position-cell">9</td>
+                        <td class="player-name">Javier Castro</td>
+                        <td class="points-cell">1870</td>
+                        <td class="stats-cell">35</td>
+                        <td class="wins-cell">22</td>
+                    </tr>
+                    <tr class="position-10">
+                        <td class="position-cell">10</td>
+                        <td class="player-name">Valentina Ríos</td>
+                        <td class="points-cell">1800</td>
+                        <td class="stats-cell">34</td>
+                        <td class="wins-cell">21</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         🏆 DATOS DE TORNEOS
+         ════════════════════════════════════════════
+         
+         ✏️ PARA AGREGAR TORNEO:
+         Copia todo el bloque <div class="tournament-card">...</div>
+         Cambia: imagen URL, fecha, nombre, ganador
+         
+         ════════════════════════════════════════════ -->
+    <section class="tournaments-section">
+        <h2 class="section-title">🏆 TORNEOS 2025</h2>
+        <div class="tournaments-grid">
+            
+            <div class="tournament-card">
+                <div class="tournament-image-container">
+                    <img src="https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800&q=80&fit=crop" alt="Copa Apertura" class="tournament-image">
+                </div>
+                <div class="tournament-info">
+                    <div class="tournament-date">Enero 2025</div>
+                    <div class="tournament-name">COPA APERTURA</div>
+                    <div class="tournament-winner">🥇 Carlos Rodríguez</div>
+                </div>
+            </div>
+
+            <div class="tournament-card">
+                <div class="tournament-image-container">
+                    <img src="https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?w=800&q=80&fit=crop" alt="Torneo Relámpago" class="tournament-image">
+                </div>
+                <div class="tournament-info">
+                    <div class="tournament-date">Febrero 2025</div>
+                    <div class="tournament-name">TORNEO RELÁMPAGO</div>
+                    <div class="tournament-winner">🥇 Ana Martínez</div>
+                </div>
+            </div>
+
+            <div class="tournament-card">
+                <div class="tournament-image-container">
+                    <img src="https://images.unsplash.com/photo-1611940303284-e264d85e9413?w=800&q=80&fit=crop" alt="Campeonato Nacional" class="tournament-image">
+                </div>
+                <div class="tournament-info">
+                    <div class="tournament-date">Marzo 2025</div>
+                    <div class="tournament-name">CAMPEONATO NACIONAL</div>
+                    <div class="tournament-winner">📅 Próximamente...</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         📞 INFORMACIÓN DE CONTACTO
+         ════════════════════════════════════════════
+         
+         ✏️ EDITA: dirección, teléfono, email, redes sociales
+         
+         ════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="footer-content">
+            
+            <div class="footer-section">
+                <h4>LTM URUGUAY</h4>
+                <p>Liga de Tenis de Mesa</p>
+                <p>Fundado en 1995</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>CONTACTO</h4>
+                <p>📍 Montevideo, Uruguay</p>
+                <p>📞 +598 XX XXX XXX</p>
+                <p>✉️ info@ltmuruguay.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>SÍGUENOS</h4>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                    <a href="#">📺</a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 LTM Uruguay • Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+</body>
+</html>
