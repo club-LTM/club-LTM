@@ -9,7 +9,7 @@
     
     <!--
     ╔══════════════════════════════════════════════════════════════════╗
-    ║           🏓 LTM URUGUAY - VERSIÓN CON DISEÑO MÁXIMO            ║
+    ║           🏓 LTM URUGUAY -           ║
     ╚══════════════════════════════════════════════════════════════════╝
     
     📋 GUÍA DE EDICIÓN RÁPIDA:
@@ -115,36 +115,29 @@
         }
 
         .logo-container {
-            background: white;
-            padding: 0.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--verde);
-            animation: logoGlow 3s ease-in-out infinite;
-            width: 65px;
-            height: 65px;
-        }
+        background: transparent;
+          padding: 0;
+           border: none;
+           box-shadow: none;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 130px;
+          height: 130px;
+}
+
+        
+    
 
         .logo-container img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             display: block;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
-        /* Fallback si el logo no carga */
-        .logo-container img[alt]::before {
-            content: '🏓';
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+       
 
         .club-name {
             color: var(--blanco);
